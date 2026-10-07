@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>WanderWorld 🌎</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+
+  <div class="logo">
+    🌎 Wander<span>World</span>
+  </div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#destinations">Destinations</a>
+    <a href="#tools">Travel Tools</a>
+    <a href="#tips">Travel Tips</a>
+  </nav>
+
+  <div class="nav-actions">
+    <button id="languageBtn">🇮🇩</button>
+    <button id="themeBtn">🌙</button>
+  </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+
+  <div class="hero-content">
+
+    <p class="eyebrow">🌎 EXPLORE THE WORLD</p>
+
+    <h1>
+      The World Is
+      <span>Waiting.</span>
+    </h1>
+
+    <p>
+      Temukan negara impianmu, cari destinasi menarik,
+      hitung budget perjalanan, dan persiapkan petualanganmu.
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#destinations" class="btn primary">
+        Explore Countries 🌍
+      </a>
+
+      <button class="btn secondary" onclick="randomCountry()">
+        🎲 Surprise Me
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="hero-card">
+
+    <div class="globe">🌎</div>
+
+    <h3>195 Countries</h3>
+
+    <p>
+      One world. Thousands of adventures.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= DESTINATIONS ================= -->
+<section class="section" id="destinations">
+
+  <div class="section-heading">
+
+    <p class="eyebrow">DESTINATIONS</p>
+
+    <h2>Explore The World</h2>
+
+    <p>
+      Cari negara berdasarkan nama, ibu kota, atau wilayah.
+    </p>
+
+  </div>
+
+
+  <!-- SEARCH -->
+  <div class="search-box">
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="🔎 Cari negara atau ibu kota..."
+    >
+
+    <button id="clearSearch">✕</button>
+
+  </div>
+
+
+  <!-- FILTER -->
+  <div class="filters">
+
+    <button class="filter active" data-region="all">
+      🌎 All
+    </button>
+
+    <button class="filter" data-region="Asia">
+      🌏 Asia
+    </button>
+
+    <button class="filter" data-region="Europe">
+      🌍 Europe
+    </button>
+
+    <button class="filter" data-region="Africa">
+      🌍 Africa
+    </button>
+
+    <button class="filter" data-region="America">
+      🌎 America
+    </button>
+
+    <button class="filter" data-region="Oceania">
+      🌏 Oceania
+    </button>
+
+  </div>
+
+
+  <p class="result-count" id="resultCount"></p>
+
+  <div class="country-grid" id="countryGrid"></div>
+
+  <div class="empty" id="emptyState">
+    😕 Negara tidak ditemukan.
+  </div>
+
+</section>
+
+
+<!-- ================= RANDOM ================= -->
+<section class="random-section">
+
+  <div>
+
+    <p class="eyebrow">CAN'T DECIDE?</p>
+
+    <h2>Let The World Choose For You 🎲</h2>
+
+    <p>
+      Bingung mau pergi ke mana? Biarkan WanderWorld
+      memilih destinasi secara acak.
+    </p>
+
+  </div>
+
+  <button class="btn primary" onclick="randomCountry()">
+    🎲 Pick A Country
+  </button>
+
+</section>
+
+
+<!-- ================= TRAVEL TOOLS ================= -->
+<section class="section" id="tools">
+
+  <div class="section-heading">
+
+    <p class="eyebrow">TRAVEL TOOLS</p>
+
+    <h2>Plan Your Adventure</h2>
+
+    <p>
+      Gunakan berbagai tools untuk mempersiapkan perjalananmu.
+    </p>
+
+  </div>
+
+
+  <div class="tools-grid">
+
+
+    <!-- WEATHER -->
+    <div class="tool-card">
+
+      <div class="tool-icon">🌤️</div>
+
+      <h3>Weather Checker</h3>
+
+      <p>
+        Cek informasi cuaca berdasarkan kota tujuan.
+      </p>
+
+      <input
+        type="text"
+        id="weatherCity"
+        placeholder="Contoh: Tokyo"
+      >
+
+      <button onclick="checkWeather()">
+        Check Weather
+      </button>
+
+      <div id="weatherResult" class="tool-result"></div>
+
+    </div>
+
+
+    <!-- FAVORITE -->
+    <div class="tool-card">
+
+      <div class="tool-icon">❤️</div>
+
+      <h3>Favorite Countries</h3>
+
+      <p>
+        Negara yang kamu favoritkan akan tersimpan di browser.
+      </p>
+
+      <button onclick="showFavorites()">
+        ❤️ My Favorites
+      </button>
+
+      <div id="favoriteResult" class="tool-result"></div>
+
+    </div>
+
+
+    <!-- BUDGET -->
+    <div class="tool-card">
+
+      <div class="tool-icon">💰</div>
+
+      <h3>Budget Calculator</h3>
+
+      <input
+        type="number"
+        id="ticket"
+        placeholder="Tiket"
+      >
+
+      <input
+        type="number"
+        id="hotel"
+        placeholder="Hotel"
+      >
+
+      <input
+        type="number"
+        id="food"
+        placeholder="Makanan"
+      >
+
+      <input
+        type="number"
+        id="transport"
+        placeholder="Transport"
+      >
+
+      <button onclick="calculateBudget()">
+        Calculate
+      </button>
+
+      <div id="budgetResult" class="tool-result"></div>
+
+    </div>
+
+
+    <!-- PACKING -->
+    <div class="tool-card">
+
+      <div class="tool-icon">🎒</div>
+
+      <h3>Packing Checklist</h3>
+
+      <label>
+        <input type="checkbox"> Paspor
+      </label>
+
+      <label>
+        <input type="checkbox"> Baju
+      </label>
+
+      <label>
+        <input type="checkbox"> Charger
+      </label>
+
+      <label>
+        <input type="checkbox"> Obat pribadi
+      </label>
+
+      <label>
+        <input type="checkbox"> Kamera
+      </label>
+
+      <label>
+        <input type="checkbox"> Uang
+      </label>
+
+    </div>
+
+
+    <!-- QUIZ -->
+    <div class="tool-card quiz-card">
+
+      <div class="tool-icon">🧠</div>
+
+      <h3>Country Quiz</h3>
+
+      <p id="quizQuestion">
+        Loading question...
+      </p>
+
+      <div id="quizOptions"></div>
+
+      <p id="quizScore"></p>
+
+    </div>
+
+
+    <!-- COMPARISON -->
+    <div class="tool-card">
+
+      <div class="tool-icon">📊</div>
+
+      <h3>Country Comparison</h3>
+
+      <select id="compare1"></select>
+
+      <select id="compare2"></select>
+
+      <button onclick="compareCountries()">
+        Compare
+      </button>
+
+      <div id="compareResult" class="tool-result"></div>
+
+    </div>
+
+
+    <!-- GALLERY -->
+    <div class="tool-card gallery-card">
+
+      <div class="tool-icon">📸</div>
+
+      <h3>Destination Gallery</h3>
+
+      <div class="gallery">
+
+        <img
+          src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=500&q=80"
+          alt="Paris"
+        >
+
+        <img
+          src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=500&q=80"
+          alt="Japan"
+        >
+
+        <img
+          src="https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&w=500&q=80"
+          alt="New York"
+        >
+
+      </div>
+
+    </div>
+
+
+    <!-- MAP -->
+    <div class="tool-card map-card">
+
+      <div class="tool-icon">🗺️</div>
+
+      <h3>Interactive World Map</h3>
+
+      <div class="fake-map">
+
+        <span onclick="mapCountry('Asia')">🌏</span>
+
+        <span onclick="mapCountry('Europe')">🌍</span>
+
+        <span onclick="mapCountry('Africa')">🌍</span>
+
+        <span onclick="mapCountry('America')">🌎</span>
+
+        <span onclick="mapCountry('Oceania')">🌏</span>
+
+      </div>
+
+      <p id="mapResult">
+        Klik salah satu wilayah.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= TRAVEL TIPS ================= -->
+<section class="section tips" id="tips">
+
+  <div class="section-heading">
+
+    <p class="eyebrow">TRAVEL TIPS</p>
+
+    <h2>Travel Smarter</h2>
+
+  </div>
+
+
+  <div class="tips-grid">
+
+    <div class="tip">
+      <span>01</span>
+      <h3>🗺️ Plan Your Trip</h3>
+      <p>
+        Tentukan destinasi, buat itinerary,
+        dan cari informasi sebelum berangkat.
+      </p>
+    </div>
+
+    <div class="tip">
+      <span>02</span>
+      <h3>💰 Manage Your Budget</h3>
+      <p>
+        Buat perkiraan biaya supaya perjalanan
+        lebih terencana.
+      </p>
+    </div>
+
+    <div class="tip">
+      <span>03</span>
+      <h3>🎒 Pack Smart</h3>
+      <p>
+        Bawa barang penting dan hindari membawa
+        terlalu banyak barang.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+<section class="cta">
+
+  <p class="eyebrow">YOUR NEXT ADVENTURE</p>
+
+  <h2>Where Will You Go Next? 🌎</h2>
+
+  <p>
+    Dunia luas. Petualanganmu baru dimulai.
+  </p>
+
+  <a href="#destinations" class="btn primary">
+    Explore Now
+  </a>
+
+</section>
+
+
+<!-- ================= MODAL ================= -->
+<div class="modal" id="countryModal">
+
+  <div class="modal-content">
+
+    <button class="modal-close" onclick="closeModal()">
+      ✕
+    </button>
+
+    <div id="modalHeader"></div>
+
+    <div id="modalBody"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+<footer>
+
+  <div class="footer-logo">
+    🌎 WanderWorld
+  </div>
+
+  <p>
+    Explore. Discover. Experience.
+  </p>
+
+  <p>
+    © 2026 Mukhib gak pernah travel
+  </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
